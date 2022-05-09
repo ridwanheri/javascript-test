@@ -31,11 +31,23 @@ function result(students, groups) {
     );
     // participants per groups
     const participantsPerGroup = students.length % groups;
+    let tempGroup = [];
+    let mainClass = [];
+    let counter = 0;
 
-    for (let index = 0; index < groups; index++) {
-        const element = array[index];
+    for (let index = 0; index < students.length; index++) {
+        const element = students[index];
+        if (counter >= participantsPerGroup) {
+            counter = 0;
+        } else {
+            tempGroup.push(element);
+            counter++;
+        }
+        mainClass.push(tempGroup);
+        // tempGroup.shift();
+        console.log('temp', tempGroup);
     }
-    console.log('student', participantsPerGroup);
+    console.log('student', mainClass);
 }
 
 console.log(result(students, groups));
