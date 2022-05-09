@@ -14,8 +14,13 @@ let numbersTwo = [1, 2, 3, 5, 9];
 
 function result(originalData, numbersOne, numbersTwo) {
     // Your Code Here
-    let combined = [...numbersOne, ...numbersTwo];
-    console.log('comb', combined);
+    let combined = numbersOne.concat(numbersTwo);
+    let deleted = originalData.filter((x) => !combined.includes(x));
+
+    const sumCombined = combined.reduce((a, b) => a + b, 0);
+    const sumDeleted = deleted.reduce((a, b) => a + b, 0);
+
+    return parseFloat(sumCombined / sumDeleted);
 }
 
 console.log(result(originalData, numbersOne, numbersTwo));
