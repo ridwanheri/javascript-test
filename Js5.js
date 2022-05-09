@@ -26,28 +26,19 @@ const groups = 3;
 
 function result(students, groups) {
     // your code here
-    const value = students.sort((a, b) =>
+    const sorted = students.sort((a, b) =>
         a.firstName > b.firstName ? 1 : b.firstName > a.firstName ? -1 : 0
     );
     // participants per groups
     const participantsPerGroup = students.length % groups;
-    let tempGroup = [];
-    let mainClass = [];
-    let counter = 0;
 
-    for (let index = 0; index < students.length; index++) {
-        const element = students[index];
-        if (counter >= participantsPerGroup) {
-            counter = 0;
-        } else {
-            tempGroup.push(element);
-            counter++;
-        }
-        mainClass.push(tempGroup);
-        // tempGroup.shift();
-        console.log('temp', tempGroup);
+    let group = [],
+        i = 0,
+        n = sorted.length;
+    while (i < n) {
+        group.push(sorted.slice(i, (i += participantsPerGroup)));
     }
-    console.log('student', mainClass);
+    return group;
 }
 
 console.log(result(students, groups));
